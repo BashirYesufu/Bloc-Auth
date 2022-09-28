@@ -1,6 +1,6 @@
 class AuthRepository {
   Future<void> login() async {
-    Future.delayed(Duration(seconds: 10));
+    await Future.delayed(Duration(seconds: 3));
     print('logged in');
   }
 }

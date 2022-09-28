@@ -11,7 +11,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<LoginPasswordChanged>((event, emit) => emit(state.copyWith(password: event.password)));
 
-    on<LoginSubmitted>((event, emit) async  {
+    on<LoginSubmitted>((event, emit) async {
       emit(state.copyWith(formSubmissionStatus: FormSubmitting()));
       emit(state.copyWith(formSubmissionStatus: await submit()));
     });
