@@ -40,7 +40,7 @@ class LoginView extends StatelessWidget {
           icon: Icon(Icons.person),
           hintText: 'Username',
         ),
-        validator: (value) => state.isValidUserName ? null : 'Invalid Username',
+        validator: (value) => state.isValidUserName ? null : 'Username must be 3 characters or more',
         onChanged: (value) => context
             .read<LoginBloc>()
             .add(LoginUsernameChanged(username: value)),
@@ -59,7 +59,7 @@ class LoginView extends StatelessWidget {
             hintText: 'Password',
           ),
           validator: (value) =>
-              state.isValidPassword ? null : 'Invalid Password',
+              state.isValidPassword ? null : 'Password must be 6 characters or more',
           onChanged: (value) => context
               .read<LoginBloc>()
               .add(LoginPasswordChanged(password: value)),

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/bash/Documents/bloc_auth/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/bash/Desktop/App Tasks/Bloc-Auth/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/Users/bash/.gradle/caches/transforms-3/acbce933e4b464a5224ed377a62db1f5/transformed/core-1.6.0/res/values/values.xml",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "/Users/bash/Documents/bloc_auth/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/bash/Desktop/App Tasks/Bloc-Auth/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

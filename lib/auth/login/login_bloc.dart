@@ -6,27 +6,23 @@ import '../auth_repository.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository authRepository;
-  LoginBloc(this.authRepository): super(LoginState()) {
-    on<LoginUsernameChanged>((event, emit) async* {
-      yield state.copyWith(username: event.username);
+  LoginBloc(this.authRepository): super(LoginState()){
+    on<LoginUsernameChanged>((event, emit) => emit(state.copyWith(username: event.username)));
+
+    on<LoginPasswordChanged>((event, emit) => emit(state.copyWith(password: event.password)));
+
+    on<LoginSubmitted>((event, emit) async  {
+      emit(state.copyWith(formSubmissionStatus: FormSubmitting()));
+      emit(state.copyWith(formSubmissionStatus: await submit()));
     });
   }
 
-
-  @override
-  Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is LoginUsernameChanged) {
-      yield state.copyWith(username: event.username);
-    } else if (event is LoginPasswordChanged) {
-      yield state.copyWith(password: event.password);
-    } else if (event is LoginSubmitted) {
-      yield state.copyWith(formSubmissionStatus: FormSubmitting());
-      try{
-        await authRepository.login();
-        yield state.copyWith(formSubmissionStatus: FormSubmissionSuccess());
-      } catch(e) {
-        yield state.copyWith(formSubmissionStatus: FormSubmissionFailed(e as Exception));
-      }
+  Future<FormSubmissionStatus> submit() async {
+    try{
+      await authRepository.login();
+      return FormSubmissionSuccess();
+    } catch(e) {
+      return FormSubmissionFailed(e as Exception);
     }
   }
 }

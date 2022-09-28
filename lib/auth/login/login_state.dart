@@ -16,7 +16,7 @@ class LoginState {
 
   LoginState copyWith({
     String? username,
-   String? password,
+    String? password,
     FormSubmissionStatus? formSubmissionStatus,
 }) {
     return LoginState(
