@@ -21,13 +21,23 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _loginForm() {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [_nameField(), _passwordField(), _loginButton()],
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        final status = state.formSubmissionStatus;
+        if (status is FormSubmissionFailed) {
+          _showSnackBar(context, status.exception.toString());
+        } else if (status is FormSubmissionSuccess) {
+          _showSnackBar(context, 'Login successful');
+        }
+      },
+      child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [_nameField(), _passwordField(), _loginButton()],
+          ),
         ),
       ),
     );
@@ -81,5 +91,10 @@ class LoginView extends StatelessWidget {
               child: Text('Login'),
             ),
     );
+  }
+
+  void _showSnackBar(BuildContext context, String messsage) {
+    final snackBar = SnackBar(content: Text(messsage));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
