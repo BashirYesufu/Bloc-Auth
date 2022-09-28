@@ -3,6 +3,7 @@ import 'package:bloc_auth/auth/form_submission_status.dart';
 import 'package:bloc_auth/auth/login/login_bloc.dart';
 import 'package:bloc_auth/auth/login/login_event.dart';
 import 'package:bloc_auth/auth/login/login_state.dart';
+import 'package:bloc_auth/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,6 +29,7 @@ class LoginView extends StatelessWidget {
           _showSnackBar(context, status.exception.toString(), Colors.red);
         } else if (status is FormSubmissionSuccess) {
           _showSnackBar(context, 'Login successful', Colors.greenAccent);
+          _goHome(context);
         }
       },
       child: Form(
@@ -97,4 +99,12 @@ class LoginView extends StatelessWidget {
     final snackBar = SnackBar(content: Text(message, style: TextStyle(color: Colors.black),), backgroundColor: color,);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
+  void _goHome(BuildContext context){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomeView()),
+    );
+  }
+
 }
