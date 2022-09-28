@@ -1,0 +1,4 @@
+#Wed Sep 28 03:00:50 WAT 2022
+base.0=/Users/bash/Documents/bloc_auth/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
