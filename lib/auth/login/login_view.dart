@@ -74,7 +74,7 @@ class LoginView extends StatelessWidget {
           ? CircularProgressIndicator()
           : ElevatedButton(
               onPressed: () {
-                if (_formKey.currentState?.validate() != null) {
+                if (_formKey.currentState?.validate() == true) {
                   context.read<LoginBloc>().add(LoginSubmitted());
                 }
               },

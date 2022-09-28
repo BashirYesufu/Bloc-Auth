@@ -2,10 +2,10 @@ import '../form_submission_status.dart';
 
 class LoginState {
   final String username;
-  bool get isValidUserName => username.length > 3;
+  bool get isValidUserName => username.length >= 3;
 
   final String password;
-  bool get isValidPassword => password.length > 6;
+  bool get isValidPassword => password.length >= 6;
   final FormSubmissionStatus formSubmissionStatus;
 
   LoginState({
