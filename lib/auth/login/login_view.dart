@@ -25,9 +25,9 @@ class LoginView extends StatelessWidget {
       listener: (context, state) {
         final status = state.formSubmissionStatus;
         if (status is FormSubmissionFailed) {
-          _showSnackBar(context, status.exception.toString());
+          _showSnackBar(context, status.exception.toString(), Colors.red);
         } else if (status is FormSubmissionSuccess) {
-          _showSnackBar(context, 'Login successful');
+          _showSnackBar(context, 'Login successful', Colors.greenAccent);
         }
       },
       child: Form(
@@ -93,8 +93,8 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  void _showSnackBar(BuildContext context, String messsage) {
-    final snackBar = SnackBar(content: Text(messsage));
+  void _showSnackBar(BuildContext context, String message, Color color) {
+    final snackBar = SnackBar(content: Text(message, style: TextStyle(color: Colors.black),), backgroundColor: color,);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
